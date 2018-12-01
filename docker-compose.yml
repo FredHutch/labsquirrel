@@ -24,7 +24,7 @@ services:
       - nextcloud:/var/www/html
     restart: always
 
-  app:
+  labsquirrel:
     image: nextcloud
     ports:
       - 80:80
