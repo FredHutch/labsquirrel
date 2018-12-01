@@ -1,0 +1,6 @@
+*.crt
+*.pem
+*.key
+dev-ssl/*.crt
+dev-ssl/*.pem
+dev-ssl/*.key
