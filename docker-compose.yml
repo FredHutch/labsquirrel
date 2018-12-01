@@ -26,9 +26,9 @@ services:
 
   labsquirrel:
     image: nextcloud
-    ports:
-      - 80:80
-      - 443:443
+    # ports:
+    #   - 80:80
+    #   - 443:443
     links:
       - db
     volumes:
