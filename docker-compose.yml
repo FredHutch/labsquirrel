@@ -1,0 +1,37 @@
+version: '2'
+
+volumes:
+  nextcloud:
+  db:
+
+services:
+  db:
+    image: mariadb
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=First*4isFour
+      - MYSQL_PASSWORD=Second*4isEight
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+
+  sshd:
+    image: dockerimages.fhcrc.org/labsquirrel_ssh:latest
+    ports:
+      - "2222:22"
+    volumes:
+      - nextcloud:/var/www/html
+    restart: always
+
+  app:
+    image: nextcloud
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - db
+    volumes:
+      - nextcloud:/var/www/html
+    restart: always
+
