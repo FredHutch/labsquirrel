@@ -32,6 +32,6 @@ services:
     links:
       - db
     volumes:
-      - nextcloud:/var/www/html:ro
+      - nextcloud:/var/www/html
     restart: always
 
