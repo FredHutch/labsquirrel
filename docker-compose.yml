@@ -18,17 +18,12 @@ services:
 
   sshd:
     image: dockerimages.fhcrc.org/labsquirrel_ssh:latest
-    # ports:
-    #   - "2222:22"
     volumes:
-      - nextcloud:/var/www/html/custom_apps/labsquirrel
+      - nextcloud:/mnt/labsquirrel
     restart: always
 
   labsquirrel:
     image: nextcloud
-    # ports:
-    #   - 80:80
-    #   - 443:443
     links:
       - db
     volumes:
