@@ -18,8 +18,8 @@ services:
 
   sshd:
     image: dockerimages.fhcrc.org/labsquirrel_ssh:latest
-    ports:
-      - "2222:22"
+    # ports:
+    #   - "2222:22"
     volumes:
       - nextcloud:/var/www/html
     restart: always
