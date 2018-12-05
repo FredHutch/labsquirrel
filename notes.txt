@@ -15,6 +15,8 @@ rsync -vzhre "ssh -i ~/.ssh/labsquirrel -p 2222" ../LabSquirrel/ www-data@foo:/v
 
 ssh -p 2222 -i ~/.ssh/labsquirrel root@sqrl.fhcrc.org "chown -R www-data:www-data /mnt/labsquirrel"
 
+ssh -p 2222 -i ~/.ssh/labsquirrel www-data@sqrl.fhcrc.org "mkdir -p /mnt/labsquirrel/custom_apps/labsquirrel"
 
 
-rsync -vzhre "ssh -i ~/.ssh/labsquirrel -p 2222" ../LabSquirrel/ www-data@sqrl.fhcrc.org:/mnt/labsquirrel
+rsync -vzhre "ssh -i ~/.ssh/labsquirrel -p 2222" ../LabSquirrel/ www-data@sqrl.fhcrc.org:/mnt/labsquirrel/custom_apps/labsquirrel/
+

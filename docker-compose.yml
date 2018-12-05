@@ -27,6 +27,10 @@ services:
     links:
       - db
     volumes:
-      - nextcloud:/var/www/html/
+      - data:/var/www/html/data
+      - config:/var/www/html/config
+      - apps:/var/www/html/apps
+      - custom_apps:/var/www/html/custom_apps
+      # - nextcloud:/var/www/html/
     restart: always
 
