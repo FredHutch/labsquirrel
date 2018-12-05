@@ -1,7 +1,11 @@
 version: '2'
 
 volumes:
-  nextcloud:
+  # nextcloud:
+  data:
+  config:
+  apps:
+  custom_apps:
   db:
 
 services:
@@ -19,7 +23,11 @@ services:
   sshd:
     image: dockerimages.fhcrc.org/labsquirrel_ssh:latest
     volumes:
-      - nextcloud:/mnt/labsquirrel
+      # - nextcloud:/mnt/labsquirrel
+      - data:/var/www/html/data
+      - config:/var/www/html/config
+      - apps:/var/www/html/apps
+      - custom_apps:/var/www/html/custom_apps
     restart: always
 
   labsquirrel:
