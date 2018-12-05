@@ -4,13 +4,17 @@
 # local (foo is an alias for localhost)
 
 
-ssh -p 2222 -i ~/.ssh/labsquirrel root@foo "chown -R www-data:www-data /var/www/html/custom_apps"
+ssh -p 2222 -i ~/.ssh/labsquirrel root@foo "chown -R www-data:www-data /var/www/html/custom_apps/labsquirrel"
 
 rsync -vzhre "ssh -i ~/.ssh/labsquirrel -p 2222" ../LabSquirrel/ www-data@foo:/var/www/html/custom_apps/labsquirrel
 
 
 # prod:
 
-ssh -p 2222 -i ~/.ssh/labsquirrel root@sqrl.fhcrc.org "chown -R www-data:www-data /var/www/html/custom_apps"
 
-rsync -vzhre "ssh -i ~/.ssh/labsquirrel -p 2222" ../LabSquirrel/ www-data@sqrl.fhcrc.org:/var/www/html/custom_apps/labsquirrel
+
+ssh -p 2222 -i ~/.ssh/labsquirrel root@sqrl.fhcrc.org "chown -R www-data:www-data /mnt/labsquirrel"
+
+
+
+rsync -vzhre "ssh -i ~/.ssh/labsquirrel -p 2222" ../LabSquirrel/ www-data@sqrl.fhcrc.org:/mnt/labsquirrel
