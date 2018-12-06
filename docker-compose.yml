@@ -7,6 +7,7 @@ volumes:
   apps:
   custom_apps:
   db:
+  themes:
 
 services:
   db:
@@ -28,6 +29,7 @@ services:
       - config:/var/www/html/config
       - apps:/var/www/html/apps
       - custom_apps:/var/www/html/custom_apps
+      - themes:/var/www/html/themes
     restart: always
 
   labsquirrel:
@@ -39,6 +41,7 @@ services:
       - config:/var/www/html/config
       - apps:/var/www/html/apps
       - custom_apps:/var/www/html/custom_apps
+      - themes:/var/www/html/themes
       # - nextcloud:/var/www/html/
     restart: always
 
