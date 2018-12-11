@@ -8,7 +8,7 @@ volumes:
   custom_apps:
   # db:
   themes:
-  htaccess:
+  # htaccess:
 
 
 services:
@@ -32,7 +32,7 @@ services:
       - apps:/var/www/html/apps
       - custom_apps:/var/www/html/custom_apps
       - themes:/var/www/html/themes
-      - htaccess:/var/www/html/.htaccess
+      # - htaccess:/var/www/html/.htaccess
     restart: always
 
   labsquirrel:
@@ -45,7 +45,7 @@ services:
       - apps:/var/www/html/apps
       - custom_apps:/var/www/html/custom_apps
       - themes:/var/www/html/themes
-      - htaccess:/var/www/html/.htaccess
+      # - htaccess:/var/www/html/.htaccess
       # - nextcloud:/var/www/html/
     restart: always
 
