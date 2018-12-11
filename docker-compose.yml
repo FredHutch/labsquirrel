@@ -6,20 +6,22 @@ volumes:
   config:
   apps:
   custom_apps:
-  db:
+  # db:
   themes:
+  htaccess:
+
 
 services:
-  db:
-    image: mariadb
-    restart: always
-    volumes:
-      - db:/var/lib/mysql
-    environment:
-      - MYSQL_ROOT_PASSWORD=First*4isFour
-      - MYSQL_PASSWORD=Second*4isEight
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
+  # db:
+  #   image: mariadb
+  #   restart: always
+  #   volumes:
+  #     - db:/var/lib/mysql
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=First*4isFour
+  #     - MYSQL_PASSWORD=Second*4isEight
+  #     - MYSQL_DATABASE=nextcloud
+  #     - MYSQL_USER=nextcloud
 
   sshd:
     image: dockerimages.fhcrc.org/labsquirrel_ssh:latest
@@ -30,18 +32,20 @@ services:
       - apps:/var/www/html/apps
       - custom_apps:/var/www/html/custom_apps
       - themes:/var/www/html/themes
+      - htaccess:/var/www/html/.htaccess
     restart: always
 
   labsquirrel:
     image: nextcloud
-    links:
-      - db
+    # links:
+    #   - db
     volumes:
       - data:/var/www/html/data
       - config:/var/www/html/config
       - apps:/var/www/html/apps
       - custom_apps:/var/www/html/custom_apps
       - themes:/var/www/html/themes
+      - htaccess:/var/www/html/.htaccess
       # - nextcloud:/var/www/html/
     restart: always
 
