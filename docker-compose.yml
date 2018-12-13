@@ -1,13 +1,13 @@
 version: '2'
 
 volumes:
-  # nextcloud:
-  data:
-  config:
-  apps:
-  custom_apps:
+  nextcloud:
+  # data:
+  # config:
+  # apps:
+  # custom_apps:
   # db:
-  themes:
+  # themes:
   # htaccess:
 
 
@@ -26,12 +26,12 @@ services:
   sshd:
     image: dockerimages.fhcrc.org/labsquirrel_ssh:latest
     volumes:
-      # - nextcloud:/mnt/labsquirrel
-      - data:/var/www/html/data
-      - config:/var/www/html/config
-      - apps:/var/www/html/apps
-      - custom_apps:/var/www/html/custom_apps
-      - themes:/var/www/html/themes
+      - nextcloud:/var/www/html
+      # - data:/var/www/html/data
+      # - config:/var/www/html/config
+      # - apps:/var/www/html/apps
+      # - custom_apps:/var/www/html/custom_apps
+      # - themes:/var/www/html/themes
       # - htaccess:/var/www/html/.htaccess
     restart: always
 
@@ -40,12 +40,12 @@ services:
     # links:
     #   - db
     volumes:
-      - data:/var/www/html/data
-      - config:/var/www/html/config
-      - apps:/var/www/html/apps
-      - custom_apps:/var/www/html/custom_apps
-      - themes:/var/www/html/themes
+      # - data:/var/www/html/data
+      # - config:/var/www/html/config
+      # - apps:/var/www/html/apps
+      # - custom_apps:/var/www/html/custom_apps
+      # - themes:/var/www/html/themes
       # - htaccess:/var/www/html/.htaccess
-      # - nextcloud:/var/www/html/
+      - nextcloud:/var/www/html
     restart: always
 
