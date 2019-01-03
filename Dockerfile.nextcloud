@@ -1,0 +1,7 @@
+
+# build me as fredhutch/nextcloud-with-mod-headers:latest
+
+FROM nextcloud:latest
+
+RUN a2enmod headers && service apache2 restart
+

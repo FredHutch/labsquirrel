@@ -36,7 +36,7 @@ services:
     restart: always
 
   labsquirrel:
-    image: nextcloud
+    image: fredhutch/nextcloud-with-mod-headers:latest
     # links:
     #   - db
     volumes:
