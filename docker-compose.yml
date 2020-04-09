@@ -33,6 +33,9 @@ services:
       # - custom_apps:/var/www/html/custom_apps
       # - themes:/var/www/html/themes
       # - htaccess:/var/www/html/.htaccess
+    labels:
+      name: "hdc-local03"
+      io.rancher.scheduler.affinity:host_label: name=hdc-local03
     restart: always
 
   labsquirrel:
@@ -47,5 +50,8 @@ services:
       # - themes:/var/www/html/themes
       # - htaccess:/var/www/html/.htaccess
       - nextcloud:/var/www/html
+    labels:
+      name: "hdc-local03"
+      io.rancher.scheduler.affinity:host_label: name=hdc-local03
     restart: always
 
