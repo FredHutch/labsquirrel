@@ -35,5 +35,5 @@ networks:
     external: true
 
 volumes: 
-  labsquirel:
+  labsquirrel:
     external: true
