@@ -16,12 +16,14 @@ stages:
 
 build:
   script:
+    - stage: build
     - python3 build_helper.py docker-compose.yml > /dev/null
     - docker build -t sc-registry.fredhutch.org/labsquirrel_ssh:latest .
     # for now, push w/o testing
     - docker push sc-registry.fredhutch.org/labsquirrel_ssh:latest
  
 # test:
+#   stage: test
 #   script:
 #     - echo write some real tests
 
