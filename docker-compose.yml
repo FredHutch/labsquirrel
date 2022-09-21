@@ -2,6 +2,8 @@ version: '3.3'
 
 services:
   sshd:
+    ports:
+      - "2222:22"
     image: sc-registry.fredhutch.org/labsquirrel_ssh:latest
     volumes:
       - nextcloud:/var/www/html

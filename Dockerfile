@@ -1,5 +1,5 @@
 # the dockerfile for the ssh daemon
-# build me as dockerimages.fhcrc.org/labsquirrel_ssh:latest
+# build me as sc-registry.fredhutch.org/labsquirrel_ssh:latest
 FROM panubo/sshd
 
 RUN useradd -u 33 -g www-data -m -d /home/www-data www-data
