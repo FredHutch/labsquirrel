@@ -2,7 +2,12 @@
 # build me as dockerimages.fhcrc.org/labsquirrel_ssh:latest
 FROM panubo/sshd
 
+RUN useradd -u 33 -g www-data -m -d /home/www-data www-data
+
 ADD labsquirrel.pub /root/.ssh/authorized_keys
 ADD labsquirrel.pub /etc/authorized_keys/www-data
 
-ENV SSH_USERS="www-data:33:33"
+
+
+ENV SSH_USERS="www-data:33:82"
+
