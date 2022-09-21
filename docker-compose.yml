@@ -35,5 +35,5 @@ networks:
     external: true
 
 volumes: 
-  labsquirrel:
+  nextcloud:
     external: true
