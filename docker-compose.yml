@@ -1,57 +1,39 @@
-version: '2'
-
-volumes:
-  nextcloud:
-  # data:
-  # config:
-  # apps:
-  # custom_apps:
-  # db:
-  # themes:
-  # htaccess:
-
+version: '3.3'
 
 services:
-  # db:
-  #   image: mariadb
-  #   restart: always
-  #   volumes:
-  #     - db:/var/lib/mysql
-  #   environment:
-  #     - MYSQL_ROOT_PASSWORD=First*4isFour
-  #     - MYSQL_PASSWORD=Second*4isEight
-  #     - MYSQL_DATABASE=nextcloud
-  #     - MYSQL_USER=nextcloud
-
   sshd:
-    image: dockerimages.fhcrc.org/labsquirrel_ssh:latest
+    image: sc-registry.fredhutch.org/labsquirrel_ssh:latest
     volumes:
       - nextcloud:/var/www/html
-      # - data:/var/www/html/data
-      # - config:/var/www/html/config
-      # - apps:/var/www/html/apps
-      # - custom_apps:/var/www/html/custom_apps
-      # - themes:/var/www/html/themes
-      # - htaccess:/var/www/html/.htaccess
-    labels:
-      name: "hdc-local03"
-      io.rancher.scheduler.affinity:host_label: name=hdc-local03
-    restart: always
+    deploy:
+      placement:
+        constraints: [node.hostname == sc-swarm-05]
+      restart_policy:
+        condition: on-failure
 
   labsquirrel:
+    networks:
+    - proxy
     image: fredhutch/nextcloud-with-mod-headers:latest
-    # links:
-    #   - db
     volumes:
-      # - data:/var/www/html/data
-      # - config:/var/www/html/config
-      # - apps:/var/www/html/apps
-      # - custom_apps:/var/www/html/custom_apps
-      # - themes:/var/www/html/themes
-      # - htaccess:/var/www/html/.htaccess
       - nextcloud:/var/www/html
-    labels:
-      name: "hdc-local03"
-      io.rancher.scheduler.affinity:host_label: name=hdc-local03
-    restart: always
+    deploy:
+      placement:
+        constraints: [node.hostname == sc-swarm-05]
+      restart_policy:
+        condition: on-failure
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.labsquirrel.rule=Host(`sqrl0.fhcrc.org`)"
+        - "traefik.http.routers.labsquirrel-secured.rule=Host(`sqrl.fhcrc.org`)"
+        - "traefik.http.routers.labsquirrel.entrypoints=web,web-secured"
+        - "traefik.http.services.labsquirrel.loadbalancer.server.port=80" # it seems you always need to give traefik a port so it 'notices' the service
+        - "traefik.http.routers.labsquirrel.tls=true"
 
+networks:
+  proxy:
+    external: true
+
+volumes: 
+  labsquirel:
+    external: true
