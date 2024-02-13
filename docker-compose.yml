@@ -9,7 +9,7 @@ services:
       - nextcloud:/var/www/html
     deploy:
       placement:
-        constraints: [node.hostname == sc-swarm-05]
+        constraints: [node.hostname == sc-swarm-02]
       restart_policy:
         condition: on-failure
 
