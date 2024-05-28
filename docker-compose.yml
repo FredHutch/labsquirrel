@@ -6,8 +6,10 @@ services:
       - "2222:22"
     image: sc-registry.fredhutch.org/labsquirrel_ssh:latest
     volumes:
-      - nextcloud_persistent:/var/www/html
+      - nextcloud:/var/www/html
     deploy:
+      placement:
+        constraints: [node.hostname == sc-swarm-02]
       restart_policy:
         condition: on-failure
 
@@ -16,8 +18,10 @@ services:
     - proxy
     image: fredhutch/nextcloud-with-mod-headers:latest
     volumes:
-      - nextcloud_persistent:/var/www/html
+      - nextcloud:/var/www/html
     deploy:
+      placement:
+        constraints: [node.hostname == sc-swarm-02]
       restart_policy:
         condition: on-failure
       labels:
@@ -33,9 +37,5 @@ networks:
     external: true
 
 volumes: 
-  nextcloud_persistent:
-    driver: local
-    driver_opts:
-      type: nfs
-      device: "${PERSISTENT_VOLUME_PATH}"
-      o: addr=${NFS_SERVER},rw
+  nextcloud:
+    external: true
