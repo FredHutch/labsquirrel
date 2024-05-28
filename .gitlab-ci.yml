@@ -27,6 +27,20 @@ build:
 #   script:
 #     - echo write some real tests
 
+deploy_debug:
+  stage: deploy
+  only:
+    refs:
+        - troubleshooting
+  script:
+    - sleep 5
+    - echo $SC_SWARM_CICD_SSH_KEY | base64 -d > ./sc_swarm_cicd_ssh_key
+    - chmod 0400 ./sc_swarm_cicd_ssh_key
+    - cat docker-compose.yml | envsubst | python3 build_helper.py - | ssh -i ./sc_swarm_cicd_ssh_key -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null root@sc-swarm-mgr.fhcrc.org docker stack deploy --with-registry-auth -c - labsquirrel_debug
+
+
+
+
 deploy:
   stage: deploy
   only:
