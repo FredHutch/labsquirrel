@@ -41,5 +41,5 @@ volumes:
     driver: local
     driver_opts:
       type: nfs
-      device: "${PERSISTENT_VOLUME_PATH}"
+      device: "${PERSISTENT_VOLUME_PATH2}"
       o: addr=${NFS_SERVER},rw
