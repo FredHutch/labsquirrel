@@ -18,7 +18,7 @@ services:
   labsquirrel:
     networks:
     - proxy
-    image: fredhutch/nextcloud-with-mod-headers:latest
+    image: httpd:latest
     volumes:
       - nextcloud_persistent:/var/www/html
     deploy:
